@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="css/index.css" />
         <link rel="stylesheet" href="css/download.css" />
+        <script src="../script/download.js" type="module" defer></script>
         <title>Result</title>
     </head>
     <body>
@@ -15,8 +16,7 @@
                 <h1 class="title">Result</h1>
                 <hr />
                 <p class="doujin-name"><%= name %></p>
-                <%- image -%>
-                <button class="download-btn">Download</button>
+                <button class="download-btn" download-btn>Download</button>
             </div>
         </div>
     </body>

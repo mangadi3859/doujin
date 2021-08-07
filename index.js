@@ -21,12 +21,17 @@ app.get("/", (req, res) => {
     res.render("index");
 });
 
-app.post("/download", checkId, async (req, res) => {
-    const result = await nhentai.test(req.body.id);
-    res.render("download", { name: result.title.pretty, image: `<img class="thumbnail" src="https://i.nhentai.net/galleries/${result.media_id}/1.jpg" alt="thumbnail" />` });
+app.post("/download", checkId, (req, res) => {
+    const result = req.nhentai;
+    res.render("download", { name: result.title.pretty });
 });
 
-app.post("/download/isla", (req, res) => {});
+app.post("/download/isla", checkData, (req, res) => {
+    res.set("Content-Type", "file/zip");
+    res.set("Content-Disposition", "attachment; filename=" + req.nhentai.id);
+    let buffer = req.nhentai.buffer.toString("base64");
+    res.status(200).download(buffer);
+});
 
 app.use((req, res) => {
     res.redirect("/");
@@ -37,10 +42,21 @@ app.listen(PORT, () => {
 });
 
 async function checkId(req, res, next) {
-    if (!false) return next();
+    let isValid = await nhentai.test(req.body.id);
+    if (isValid) {
+        req.nhentai = isValid;
+        return next();
+    }
     res.status(404).render("notFound", { id: req.body.id });
 }
 
-function checkData(req, res, next) {
-    const { buffer } = req.body;
+async function checkData(req, res, next) {
+    const { id } = req.body;
+    try {
+        let res = await nhentai.download(id);
+        req.nhentai = { id: res.id, buffer: res.buffer };
+        return next();
+    } catch (err) {
+        res.redirect("/");
+    }
 }
