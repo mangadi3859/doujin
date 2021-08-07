@@ -42,12 +42,11 @@ app.listen(PORT, () => {
 });
 
 async function checkId(req, res, next) {
-    let isValid = await nhentai.test(req.body.id);
+    let isValid = await nhentai.test(req.body.id).catch(() => null);
     if (isValid) {
         req.nhentai = isValid;
         return next();
-    }
-    res.status(404).render("notFound", { id: req.body.id });
+    } else res.status(404).render("notFound", { id: req.body.id });
 }
 
 async function checkData(req, res, next) {
