@@ -29,17 +29,12 @@ app.post("/download", checkId, (req, res) => {
     res.render("download", { name: result.title.pretty, id: result.id });
 });
 
-app.post(
-    "/download/isla",
-    checkData,
-    (req, res, next) => {
-        res.set("Content-Disposition", "attachment; filename=" + req.nhentai.id + ".zip");
-        let buffer = req.nhentai.buffer.toString("base64");
-        res.status(200).send(buffer);
-        next();
-    },
-    redirect,
-);
+app.post("/download/isla", checkData, (req, res, next) => {
+    res.set("Content-Disposition", "attachment; filename=" + req.nhentai.id + ".zip");
+    let buffer = req.nhentai.buffer.toString("base64");
+    res.status(200).send(buffer);
+    next();
+});
 
 app.use((req, res) => {
     res.redirect("/");
@@ -67,8 +62,4 @@ async function checkData(req, res, next) {
     } catch (err) {
         res.redirect("/");
     }
-}
-
-function redirect(req, res, next) {
-    res.redirect("/");
 }
