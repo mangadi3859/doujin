@@ -23,7 +23,7 @@ app.get("/", (req, res) => {
 
 app.post("/download", checkId, async (req, res) => {
     const result = await nhentai.download(req.body.id);
-    res.render("download", { name: result.title, image: `https://i.nhentai.net/galleries/${result.media_id}/1.jpg` });
+    res.render("download", { name: result.title, image: `<img class="thumbnail" src="https://i.nhentai.net/galleries/${result.media_id}/1.jpg" alt="thumbnail" />` });
 });
 
 app.post("/download/isla", (req, res) => {});

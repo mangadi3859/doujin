@@ -79,8 +79,8 @@ body * {
     display: flex;
     flex-direction: column;
     position: relative;
-    top: 60%;
-    transform: translateY(60%);
+    top: 40%;
+    transform: translateY(40%);
     align-items: center;
     justify-content: center;
 }

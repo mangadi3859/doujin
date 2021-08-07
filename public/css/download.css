@@ -2,6 +2,7 @@
     font-size: 1.8rem;
     min-width: 30vw;
     text-align: center;
+    padding: 0 1rem 1rem 0;
 }
 
 .title {
@@ -25,4 +26,9 @@
 
 .download-btn:hover {
     background-color: hsl(239, 69%, 32%);
+}
+
+.thumbnail {
+    width: 3rem;
+    height: auto;
 }
