@@ -17,6 +17,9 @@
                 <hr />
                 <p class="doujin-name"><%= name %></p>
                 <form action="/download/isla" method="post">
+                    <div>
+                        <img src="<%= image %>" alt="thumbnail" class="thumbnail" />
+                    </div>
                     <input type="number" class="hidden" hidden value="<%= id %>" name="id" />
                     <button type="submit" class="download-btn" download-btn>Download</button>
                 </form>
