@@ -5,14 +5,18 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="css/index.css" />
-        <title>Document</title>
+        <link rel="stylesheet" href="css/download.css" />
+        <title>Result</title>
     </head>
     <body>
         <%- include("navbar.ejs") -%>
         <div class="root">
             <div class="container">
-                <h3 class="title">Search Doujin</h3>
+                <h1 class="title">Result</h1>
                 <hr />
+                <p class="doujin-name"><%= name %></p>
+                <img class="thumbnail" src="<%= image %>" alt="Thumbnail" />
+                <button class="download-btn">Download</button>
             </div>
         </div>
     </body>

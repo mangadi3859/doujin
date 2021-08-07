@@ -6,24 +6,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="Download doujin from nhentai.net on this simple project" />
         <meta name="author" content="mangadi3859 - I S L A" />
-        <title>Nhentai Download</title>
+        <title>NOT FOUND</title>
         <link rel="icon" href="../images/logo.png" />
         <link rel="stylesheet" href="css/index.css" />
+        <link rel="stylesheet" href="css/notFound.css" />
     </head>
     <body>
         <%- include("navbar.ejs") -%>
         <div class="root">
-            <form action="download" method="POST" class="form-container">
-                <h3 class="title">Search Doujin</h3>
-                <hr />
-                <div class="input-wrapper">
-                    <input type="number" class="input-container" id="focus" name="id" required placeholder="Nhentai ID" />
-                    <button class="submit-btn">Search</button>
-                </div>
-            </form>
+            <h1>Not Found</h1>
+            <div>
+                <p>I can't find any doujin with ID <b class="id"><%= id %></b></p>
+            </div>
+            <a class="home" href="/">Back</a>
         </div>
     </body>
-    <script>
-        document.getElementById("focus").focus();
-    </script>
 </html>

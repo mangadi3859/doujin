@@ -11,19 +11,22 @@ const ROOT = path.join(__dirname, "public", "html");
 app.set("view engine", "ejs");
 app.set("views", ROOT);
 app.use(express.json());
-//app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.all("/public/*", (req, res) => {
-    res.redirect("/download");
+    res.redirect("/");
 });
 
 app.get("/", (req, res) => {
     res.render("index");
 });
 
-app.post("/download", checkId, (req, res) => {
-    res.render("download");
+app.post("/download", checkId, async (req, res) => {
+    const result = await nhentai.download(req.body.id);
+    res.render("download", { name: result.title, image: `https://i.nhentai.net/galleries/${result.media_id}/1.jpg` });
 });
+
+app.post("/download/isla", (req, res) => {});
 
 app.use((req, res) => {
     res.redirect("/");
@@ -34,7 +37,10 @@ app.listen(PORT, () => {
 });
 
 async function checkId(req, res, next) {
-    if (await nhentai.test(req.body.id)) return next();
-    res.redirect("/");
-    alert("Cannot find the ID");
+    if (!false) return next();
+    res.status(404).render("notFound", { id: req.body.id });
+}
+
+function checkData(req, res, next) {
+    const { buffer } = req.body;
 }

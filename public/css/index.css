@@ -61,11 +61,18 @@ body * {
 
 .submit-btn {
     margin: 0.5rem;
-    font-size: 1rem;
-    padding: 0.6rem;
-    background-color: hsl(202, 80%, 75%);
-    border-radius: 1rem;
-    border: 2px solid black;
+    font-size: 1.17rem;
+    min-width: 7.5rem;
+    min-height: 2rem;
+    padding: 0.75rem;
+    color: white;
+    border: none;
+    background-color: hsl(239, 69%, 46%);
+    border-radius: 10rem;
+}
+
+.submit-btn:hover {
+    background-color: hsl(239, 69%, 32%);
 }
 
 .input-wrapper {

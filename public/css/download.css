@@ -1,0 +1,28 @@
+.container {
+    font-size: 1.8rem;
+    min-width: 30vw;
+    text-align: center;
+}
+
+.title {
+    font-size: inherit;
+}
+
+.doujin-name {
+    font-size: 1rem;
+}
+
+.download-btn {
+    min-width: 7.5rem;
+    min-height: 2.5rem;
+    font-size: 1.1rem;
+    border-radius: 10rem;
+    color: white;
+    border: none;
+    background-color: hsl(239, 69%, 46%);
+    cursor: pointer;
+}
+
+.download-btn:hover {
+    background-color: hsl(239, 69%, 32%);
+}
