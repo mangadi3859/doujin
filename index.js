@@ -1,13 +1,16 @@
 "use-strict";
 
+//Library
 const express = require("express");
 const nhentai = require("./nhentai");
 const app = express();
 const path = require("path");
 
+//Constant Variables & Global Variables
 const PORT = process.env.PORT || 3000;
 const ROOT = path.join(__dirname, "public", "html");
 
+//Middleware
 app.set("view engine", "ejs");
 app.set("views", ROOT);
 app.use(express.json());
@@ -26,11 +29,17 @@ app.post("/download", checkId, (req, res) => {
     res.render("download", { name: result.title.pretty, id: result.id });
 });
 
-app.post("/download/isla", checkData, (req, res) => {
-    res.set("Content-Disposition", "attachment; filename=" + req.nhentai.id + ".zip");
-    let buffer = req.nhentai.buffer.toString("base64");
-    res.status(200).send(buffer);
-});
+app.post(
+    "/download/isla",
+    checkData,
+    (req, res) => {
+        res.set("Content-Disposition", "attachment; filename=" + req.nhentai.id + ".zip");
+        let buffer = req.nhentai.buffer.toString("base64");
+        res.status(200).send(buffer);
+        next();
+    },
+    redirect,
+);
 
 app.use((req, res) => {
     res.redirect("/");
@@ -40,6 +49,7 @@ app.listen(PORT, () => {
     console.log("App listening on port " + PORT);
 });
 
+//Custom Middleware
 async function checkId(req, res, next) {
     let isValid = await nhentai.test(req.body.id).catch(() => null);
     if (isValid) {
@@ -57,4 +67,8 @@ async function checkData(req, res, next) {
     } catch (err) {
         res.redirect("/");
     }
+}
+
+function redirect(req, res, next) {
+    res.redirect("/");
 }
