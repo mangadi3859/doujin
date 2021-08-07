@@ -32,7 +32,7 @@ app.post("/download", checkId, (req, res) => {
 app.post(
     "/download/isla",
     checkData,
-    (req, res) => {
+    (req, res, next) => {
         res.set("Content-Disposition", "attachment; filename=" + req.nhentai.id + ".zip");
         let buffer = req.nhentai.buffer.toString("base64");
         res.status(200).send(buffer);
