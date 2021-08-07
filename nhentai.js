@@ -2,7 +2,7 @@ const axios = require("axios").default;
 const JsZip = require("jszip");
 
 module.exports.test = async (id) => {
-    return await axios.get("https://nhentai.net/api/gallery/" + id).data;
+    return (await axios.get("https://nhentai.net/api/gallery/" + id)).data;
 };
 
 /**Turn nhentai into zip buffer
