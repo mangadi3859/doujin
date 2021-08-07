@@ -4,6 +4,10 @@
     font-size: 1.5rem;
 }
 
+.text-container {
+    text-align: center;
+}
+
 .id {
     color: hsl(300, 69%, 50%);
     font-size: 1.6rem;
