@@ -1,0 +1,78 @@
+header {
+    z-index: 100;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    position: absolute;
+    width: 100%;
+    background-color: hsl(0, 0%, 80%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 4rem;
+}
+
+.nav-root > .nav-container {
+    color: black;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.nav-container li {
+    list-style: none;
+    float: left;
+    color: black;
+    margin-left: 1rem;
+    cursor: pointer;
+    padding: 1rem;
+    border-radius: 10rem;
+    transition: background-color 0.5s ease;
+}
+
+.nav-container a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.nav-container li:hover {
+    background-color: hsl(0, 0%, 60%);
+}
+
+.logo-img {
+    margin-right: 1rem;
+    width: 2rem;
+    height: auto;
+    border-radius: 50%;
+}
+
+.logo-btn {
+    display: flex;
+    font-size: 1.2rem;
+    justify-content: space-between;
+    align-items: center;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.logo-btn .logo-text {
+    cursor: pointer;
+    display: block;
+}
+
+@media (max-width: 700px) {
+    /* .nav-container li:nth-child(1)::after {
+        content: <a href= "https://github.com/mangadi3859/doujin" >CODE</a>;
+        font-weight: bold;
+    }*/
+
+    .nav-container li a {
+        font-size: 0.9rem;
+    }
+
+    .nav-container li:nth-child(2) {
+        display: none;
+    }
+}

@@ -1,0 +1,79 @@
+@font-face {
+    font-family: Gotham;
+    src: url(../font/Gotham\ Rounded\ Medium.otf) format("opentype");
+}
+
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: white;
+    margin: 0;
+    padding: 0;
+}
+
+body * {
+    font-family: Gotham, arial, sans-serif;
+}
+
+.root {
+    position: relative;
+    min-height: 100vh;
+    min-width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container {
+    text-align: center;
+    background-color: hsl(300, 69%, 90%);
+    border-radius: 2.5rem;
+    padding: 2rem;
+    min-width: 30vw;
+    max-width: 90vw;
+    min-height: 50vh;
+    box-shadow: 8px 7px 15px hsl(0, 0%, 30%);
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.input-container {
+    font-size: 1.2rem;
+    border: 2px solid black;
+    border-radius: 1rem;
+    padding: 0.25rem 0.6rem;
+    overflow: hidden;
+    transition: background-color 150ms ease;
+}
+
+.input-container:focus {
+    background-color: hsl(0, 0%, 90%);
+    outline: none;
+}
+
+.submit-btn {
+    margin: 0.5rem;
+    font-size: 1rem;
+    padding: 0.6rem;
+    background-color: hsl(202, 80%, 75%);
+    border-radius: 1rem;
+    border: 2px solid black;
+}
+
+.input-wrapper {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: 60%;
+    transform: translateY(60%);
+    align-items: center;
+    justify-content: center;
+}

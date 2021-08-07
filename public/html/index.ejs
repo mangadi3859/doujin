@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Download NHentai Gallery</title>
+        <link rel="stylesheet" href="css/index.css" />
+    </head>
+    <body>
+        <%- include("navbar.ejs") -%>
+        <div class="root">
+            <form action="download" method="POST" class="form-container">
+                <h3 class="title">Search Doujin</h3>
+                <hr />
+                <div class="input-wrapper">
+                    <input type="number" class="input-container" id="focus" name="id" required placeholder="Nhentai ID" />
+                    <button class="submit-btn">Search</button>
+                </div>
+            </form>
+        </div>
+    </body>
+    <script>
+        document.getElementById("focus").focus();
+    </script>
+</html>
