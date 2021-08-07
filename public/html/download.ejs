@@ -16,7 +16,7 @@
                 <h1 class="title">Result</h1>
                 <hr />
                 <p class="doujin-name"><%= name %></p>
-                <form action="/api?auto=1" method="post">
+                <form action="/download/isla" method="post">
                     <input type="number" class="hidden" hidden value="<%= id %>" name="id" />
                     <button type="submit" class="download-btn" download-btn>Download</button>
                 </form>
