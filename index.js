@@ -23,14 +23,13 @@ app.get("/", (req, res) => {
 
 app.post("/download", checkId, (req, res) => {
     const result = req.nhentai;
-    res.render("download", { name: result.title.pretty });
+    res.render("download", { name: result.title.pretty, id: result.id });
 });
 
 app.post("/download/isla", checkData, (req, res) => {
-    res.set("Content-Type", "file/zip");
-    res.set("Content-Disposition", "attachment; filename=" + req.nhentai.id);
+    res.set("Content-Disposition", "attachment; filename=" + req.nhentai.id + ".zip");
     let buffer = req.nhentai.buffer.toString("base64");
-    res.status(200).download(buffer);
+    res.status(200).send(buffer);
 });
 
 app.use((req, res) => {

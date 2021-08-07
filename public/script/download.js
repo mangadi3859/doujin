@@ -1,9 +1,8 @@
 import axios from "axios";
 
-const btn = ducument.querySelector("[download-btn]");
-
-btn.addEventListener("click", () => {
-    axios.post("/download/isla", {
-        id: doujinId,
-    });
-});
+const button = document.querySelector("[download-btn]");
+// button.addEventListener("click", () => {
+//     axios.post("/download/isla", {
+//         id: doujinId,
+//     });
+// });
