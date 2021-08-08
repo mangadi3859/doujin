@@ -34,13 +34,13 @@ module.exports.download = async (id) => {
             return null;
         }),
     );
-    let devide = Math.floor(promises.length / 2);
+    // let devide = Math.floor(promises.length / 2);
 
-    let resolved1 = await Promise.all(promises.slice(0, devide));
-    let resolved2 = await Promise.all(promises.slice(devide, promises.length));
-    // let resolve = await Promise.all(promises);
+    // let resolved1 = await Promise.all(promises.slice(0, devide));
+    // let resolved2 = await Promise.all(promises.slice(devide, promises.length));
+     let resolve = await Promise.all(promises);
 
-    [...resolved1, ...resolved2].forEach((buffer, index) => {
+    resolve.forEach((buffer, index) => {
         if (!buffer) return;
         page++;
         let arraybuffer = Buffer.from(buffer.data);
