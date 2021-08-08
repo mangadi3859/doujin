@@ -47,6 +47,7 @@ body * {
 
 .input-container {
     font-size: 1.2rem;
+    text-align: center;
     border: 2px solid black;
     border-radius: 1rem;
     padding: 0.25rem 0.6rem;
