@@ -16,7 +16,7 @@
 .download-btn {
     min-width: 7.5rem;
     min-height: 2.5rem;
-    font-size: 1.15rem;
+    font-size: 1.2rem;
     border-radius: 10rem;
     color: white;
     border: none;
@@ -35,6 +35,6 @@
 }
 
 .home {
-    font-size: 0.9rem;
+    font-size: 1rem;
     margin-top: 1.5rem;
 }
