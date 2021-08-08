@@ -1,10 +1,10 @@
 {
     "name": "nhentai",
-    "version": "1.0.0",
+    "version": "1.0.3",
     "description": "Download doujin from nhentai",
     "main": "index.js",
     "scripts": {
-        "start": "npm start",
+        "start": "node index.js",
         "dev": "nodemon index.js"
     },
     "author": "mangadi3859",
