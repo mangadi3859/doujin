@@ -40,31 +40,31 @@
 .particle-item:nth-child(5) {
     top: 89%;
     left: 0%;
-    animation: particle-effect 6s ease infinite 0.4s;
+    animation: particle-effect 7s ease infinite 0.4s;
 }
 
 .particle-item:nth-child(6) {
     top: 39%;
     left: 50%;
-    animation: particle-effect 6s ease infinite 2s;
+    animation: particle-effect 16s ease infinite 2s;
 }
 
 .particle-item:nth-child(7) {
     top: 90%;
     left: 86%;
-    animation: particle-effect 6s ease infinite;
+    animation: particle-effect 9s ease infinite;
 }
 
 .particle-item:nth-child(8) {
     top: 29%;
     left: 34%;
-    animation: particle-effect 6s ease infinite 3s;
+    animation: particle-effect 10s ease infinite 3s;
 }
 
 .particle-item:nth-child(9) {
     top: 81%;
     left: 12%;
-    animation: particle-effect 6s ease infinite 4s;
+    animation: particle-effect 7s ease infinite 4s;
 }
 
 @keyframes particle-effect {
