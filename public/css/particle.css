@@ -8,6 +8,7 @@
 
 .particle-container * {
     position: absolute;
+    color: white;
     width: 25%;
     height: auto;
     opacity: 0;
