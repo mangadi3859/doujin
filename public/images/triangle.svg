@@ -15,7 +15,8 @@ href="svg.css" type="text/css"?>
     sodipodi:docname="svg-1.svg"
     version="1.1"
     inkscape:version="0.48.0 r9654"
-    viewBox="-0.8 -0.8 31.906251 27.65625"
+    viewBox="-0.8 -0.8 31.906251 27.65625" 
+    fill="currentColor"
   >
   <sodipodi:namedview
       id="namedview22"
