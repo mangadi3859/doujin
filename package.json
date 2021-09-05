@@ -16,5 +16,8 @@
         "express": "^4.17.1",
         "fs": "^0.0.1-security",
         "jszip": "^3.7.1"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.12"
     }
 }

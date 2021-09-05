@@ -1,0 +1,26 @@
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3.7rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--bg-secondary);
+}
+
+.footer a {
+    font-weight: var(--font-weight);
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.footer span {
+    color: var(--text-color);
+}
+
+.footer a:hover {
+    text-decoration: underline;
+    opacity: 0.7;
+}

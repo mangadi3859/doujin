@@ -1,0 +1,80 @@
+.particle-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.particle-container * {
+    position: absolute;
+    width: 25%;
+    height: auto;
+    opacity: 0;
+}
+
+.particle-item:nth-child(1) {
+    top: 100%;
+    left: 10%;
+    animation: particle-effect 8s ease infinite;
+}
+
+.particle-item:nth-child(2) {
+    top: 78%;
+    left: 40%;
+    animation: particle-effect 14s ease infinite 1s;
+}
+
+.particle-item:nth-child(3) {
+    top: 95%;
+    left: 60%;
+    animation: particle-effect 9s ease infinite 2s;
+}
+
+.particle-item:nth-child(4) {
+    top: 80%;
+    left: 75%;
+    animation: particle-effect 12s ease infinite;
+}
+
+.particle-item:nth-child(5) {
+    top: 89%;
+    left: 0%;
+    animation: particle-effect 6s ease infinite 0.4s;
+}
+
+.particle-item:nth-child(6) {
+    top: 39%;
+    left: 50%;
+    animation: particle-effect 6s ease infinite 2s;
+}
+
+.particle-item:nth-child(7) {
+    top: 90%;
+    left: 86%;
+    animation: particle-effect 6s ease infinite;
+}
+
+.particle-item:nth-child(8) {
+    top: 29%;
+    left: 34%;
+    animation: particle-effect 6s ease infinite 3s;
+}
+
+.particle-item:nth-child(9) {
+    top: 81%;
+    left: 12%;
+    animation: particle-effect 6s ease infinite 4s;
+}
+
+@keyframes particle-effect {
+    0% {
+        transform: scale(0.1) translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1.25) translateY(-200%) rotate(360deg);
+        opacity: 0;
+    }
+}

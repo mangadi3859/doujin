@@ -25,7 +25,8 @@ module.exports.download = async (id) => {
     let res = (await axios.get("https://nhentai.net/api/gallery/" + id)).data;
 
     if (!res || !res.images) throw new Error("Doujin not found");
-    zip.folder(res.title.pretty);
+    const folder = `${res.title.pretty} (${res.id})`;
+    zip.folder(folder);
     let page = 1;
 
     let promises = res.images.pages.map((obj, i) =>
@@ -34,17 +35,14 @@ module.exports.download = async (id) => {
             return null;
         }),
     );
-    // let devide = Math.floor(promises.length / 2);
 
-    // let resolved1 = await Promise.all(promises.slice(0, devide));
-    // let resolved2 = await Promise.all(promises.slice(devide, promises.length));
-     let resolve = await Promise.all(promises);
+    let resolve = await Promise.all(promises);
 
     resolve.forEach((buffer, index) => {
         if (!buffer) return;
         page++;
         let arraybuffer = Buffer.from(buffer.data);
-        zip.file(`${res.title.pretty}/${index}.jpg`, arraybuffer.toString("base64"), { base64: true });
+        zip.file(`${folder}/${index}.jpg`, arraybuffer.toString("base64"), { base64: true });
     });
 
     const finalFile = await zip.generateAsync({ type: "arraybuffer" });

@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="css/index.css" />
         <link rel="stylesheet" href="css/notFound.css" />
     </head>
+
     <body>
         <%- include("navbar.ejs") -%>
         <div class="root">
@@ -18,7 +19,8 @@
             <div class="text-container">
                 <p>I can't find any doujin with ID <b class="id"><%= id %></b></p>
             </div>
-            <a class="home" href="/">Back</a>
+            <a class="home" href="/?query=<%= id %>">Back</a>
         </div>
+        <%- include("footer.ejs") -%>
     </body>
 </html>

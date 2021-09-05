@@ -17,11 +17,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.all("/public/*", (req, res) => {
-    res.redirect("/");
+    res.status(403).redirect("/");
 });
 
 app.get("/", (req, res) => {
-    res.render("index");
+    const { query } = req.query;
+
+    res.render("index", { id: query });
 });
 
 app.post("/download", checkId, (req, res) => {
@@ -29,15 +31,15 @@ app.post("/download", checkId, (req, res) => {
     res.render("download", { name: result.title.pretty, id: result.id, image: result.thumbnail_data });
 });
 
-app.post("/download/isla", checkData, (req, res, next) => {
+app.post("/download/isla", checkData, (req, res) => {
     res.set("Content-Disposition", "attachment; filename=" + req.nhentai.id + ".zip");
     res.set("Content-Type", "file/zip");
     let buffer = req.nhentai.buffer;
-    res.status(200).send(buffer);
+    res.send(buffer);
 });
 
 app.use((req, res) => {
-    res.redirect("/");
+    res.status(404).redirect("/");
 });
 
 app.listen(PORT, () => {
@@ -60,6 +62,6 @@ async function checkData(req, res, next) {
         req.nhentai = { id: res.id, buffer: res.buffer };
         return next();
     } catch (err) {
-        res.redirect("/");
+        res.status(500).redirect("/?query=" + id);
     }
 }

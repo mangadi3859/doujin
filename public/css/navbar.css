@@ -2,8 +2,10 @@ header {
     z-index: 100;
     padding: 0.5rem 1rem 0.5rem 1rem;
     position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    background-color: hsl(0, 0%, 88%);
+    background-color: var(--bg-secondary);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -11,7 +13,7 @@ header {
 }
 
 .nav-root > .nav-container {
-    color: black;
+    color: var(--text-color);
     margin: 0;
     padding: 0;
     display: flex;
@@ -21,7 +23,7 @@ header {
 .nav-container li {
     list-style: none;
     float: left;
-    color: black;
+    color: var(--text-color);
     margin-left: 1rem;
     cursor: pointer;
     padding: 1rem;
@@ -31,8 +33,8 @@ header {
 
 .nav-container a {
     text-decoration: none;
-    color: black;
-    font-weight: bold;
+    font-weight: var(--font-weight);
+    color: var(--text-color);
     text-transform: uppercase;
 }
 
@@ -52,9 +54,9 @@ header {
     font-size: 1.2rem;
     justify-content: space-between;
     align-items: center;
-    color: black;
+    color: var(--text-color);
     text-decoration: none;
-    font-weight: bold;
+    font-weight: var(--font-weight);
 }
 
 .logo-btn .logo-text {
