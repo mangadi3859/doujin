@@ -1,9 +1,10 @@
 header {
     z-index: 100;
     padding: 0.5rem 1rem 0.5rem 1rem;
-    position: absolute;
-    top: 0;
-    left: 0;
+    /* position: absolute; */
+    /* margin-bottom: auto; */
+    /* top: 0;
+    left: 0; */
     width: 100%;
     background-color: var(--bg-secondary);
     display: flex;
