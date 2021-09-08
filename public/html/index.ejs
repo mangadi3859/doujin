@@ -25,8 +25,9 @@
         </div>
         <%- include("footer.ejs") -%>
     </body>
-    <script>
+    <script defer>
         document.getElementById("focus").focus();
+        
         window.history.pushState({}, null, window.location.pathname);
     </script>
 </html>
