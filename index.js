@@ -59,7 +59,7 @@ async function checkData(req, res, next) {
     const { id } = req.body;
     try {
         let res = await nhentai.download(id);
-        req.nhentai = { id: res.id, title: res.title.pretty, buffer: res.buffer };
+        req.nhentai = { id: res.id, title: res.title, buffer: res.buffer };
         return next();
     } catch (err) {
         res.status(500).redirect("/?query=" + id);
