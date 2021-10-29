@@ -30,14 +30,23 @@ module.exports.download = async (id) => {
     zip.folder(folder);
     let page = 1;
 
-    let promises = res.images.pages.map((obj, i) =>
-        axios.get(`https://i.nhentai.net/galleries/${res.media_id}/${i + 1}.jpg`, { responseType: "arraybuffer", timeout: 5000 }).catch((err) => {
-            console.log(err.message);
-            return axios.get(`https://i2.nhentai.net/galleries/${res.media_id}/${i + 1}.jpg`, { responseType: "arraybuffer", timeout: 5000 }).catch((err) => {
-                return null;
-            });
-        }),
-    );
+    let promises = res.images.pages.map((obj, i) => {
+        switch (obj.t) {
+            case "j": {
+                return axios.get(`https://i.nhentai.net/galleries/${res.media_id}/${i + 1}.jpg`, { responseType: "arraybuffer", timeout: 5000 }).catch((err) => {
+                    console.log(err.message);
+                    return null;
+                });
+            }
+
+            case "p": {
+                return axios.get(`https://i2.nhentai.net/galleries/${res.media_id}/${i + 1}.png`, { responseType: "arraybuffer", timeout: 5000 }).catch((err) => {
+                    console.log(err.message);
+                    return null;
+                });
+            }
+        }
+    });
 
     let resolve = await Promise.all(promises);
 
