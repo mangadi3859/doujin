@@ -6,8 +6,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="Download doujin from nhentai.net on this simple project" />
         <meta name="author" content="mangadi3859 - I S L A" />
-        <title>Nhentai Download</title>
-        <link rel="icon" href="../images/logo.png" />
+        <meta name="copyright" content="mangadi3859 (2021)" />
+        <meta property="og:image" content="../images/logo.png" />
+        <meta property="og:title" content="Doujin Downloader" />
+        <meta property="og:description" content="Download doujin from nhentai.net on this website" />
+        <title>Nhentai Downloader | Search</title>
+        <link rel="icon" href="https://raw.githubusercontent.com/mangadi3859/doujin/main/public/images/logo.png" />
         <link rel="stylesheet" href="css/index.css" />
     </head>
     <body>
@@ -25,7 +29,9 @@
         </div>
         <%- include("footer.ejs") -%>
     </body>
-    <script>
+    <script defer>
         document.getElementById("focus").focus();
+        
+        window.history.pushState({}, null, window.location.pathname);
     </script>
 </html>
