@@ -5,7 +5,7 @@ module.exports.test = async (id) => {
     let data = (await axios.get("https://nhentai.net/api/gallery/" + id)).data;
     let image = await axios.get(`https://i.nhentai.net/galleries/${data.media_id}/1.jpg`, { responseType: "arraybuffer" });
 
-    data.thumb = `data:image/png;base64,${Buffer.from(image.data)}`;
+    data.thumb = `data:image/png;base64,${Buffer.from(image.data).toString("base64")}`;
 
     return data;
 };
