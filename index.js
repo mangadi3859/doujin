@@ -28,7 +28,7 @@ app.get("/", (req, res) => {
 
 app.post("/download", checkId, (req, res) => {
     const result = req.nhentai;
-    res.render("download", { name: result.title.pretty, id: result.id, image: result.thumbnail_data });
+    res.render("download", { name: result.title.pretty, id: result.id, image: result.thumb });
 });
 
 app.post("/download/isla", checkData, (req, res) => {
