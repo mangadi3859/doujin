@@ -3,7 +3,19 @@ const JsZip = require("jszip");
 
 module.exports.test = async (id) => {
     let data = (await axios.get("https://nhentai.net/api/gallery/" + id)).data;
-    let image = await axios.get(`https://i.nhentai.net/galleries/${data.media_id}/1.jpg`, { responseType: "arraybuffer" });
+    let image;
+    
+    switch(data.images.pages[0].t) {
+        case "j": {
+            image = await axios.get(`https://i.nhentai.net/galleries/${data.media_id}/1.jpg`, { responseType: "arraybuffer" });
+            break;
+        }
+        
+        case "p": {
+          image = await axios.get(`https://i2.nhentai.net/galleries/${data.media_id}/1.png`, { responseType: "arraybuffer" });
+        }
+    }
+    
 
     data.thumb = `data:image/png;base64,${Buffer.from(image.data).toString("base64")}`;
 
