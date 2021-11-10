@@ -48,7 +48,11 @@ app.listen(PORT, () => {
 
 //Custom Middleware
 async function checkId(req, res, next) {
-    let isValid = await nhentai.test(req.body.id).catch(() => null);
+    let isValid = await nhentai.test(req.body.id).catch((err) => { 
+        console.log(err);
+        return null;
+      
+    });
     if (isValid) {
         req.nhentai = isValid;
         return next();
