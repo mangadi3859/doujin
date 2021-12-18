@@ -68,10 +68,10 @@ module.exports.download = async (id, destination) => {
         return doc.asBuffer();
     });
 
+    let meta = { author: "isla", creator: "isla", subject: "Doujin", title: folder };
     let pdf = new Pdf.Document({ properties: meta });
     pdf.pipe(destination, { end: true });
     let resolve = await Promise.all(promises);
-    let meta = { author: "isla", creator: "isla", subject: "Doujin", title: folder };
 
     resolve.forEach((buffer, index) => {
         if (!buffer) return;
