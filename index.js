@@ -35,7 +35,7 @@ app.post("/download/isla", checkData, (req, res) => {
     res.set("Content-Disposition", "attachment; filename=" + `[isla-doujin] ${req.nhentai.title} - ().pdf`);
     res.set("Content-Type", "file/pdf");
 
-    nhentai.download(req.nhentai.id, res).catch(res.status(500).json({ error: err.message }));
+    nhentai.download(req.nhentai.id, res).catch((err) => res.status(500).json({ error: err.message }));
     // res.send(buffer);
 });
 
