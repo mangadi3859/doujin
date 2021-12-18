@@ -66,6 +66,7 @@ async function checkData(req, res, next) {
         req.nhentai = { id: res.id, title: res.title.replace(/[^\w\s\d%.,\-?!+_]/g, ""), buffer: res.buffer };
         return next();
     } catch (err) {
+        console.error(err);
         res.status(500).redirect("/?query=" + id);
     }
 }
