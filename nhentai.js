@@ -1,21 +1,21 @@
 const axios = require("axios").default;
-const JsZip = require("jszip");
+// const JsZip = require("jszip");
+const Pdf = require("pdfjs");
 
 module.exports.test = async (id) => {
     let data = (await axios.get("https://nhentai.net/api/gallery/" + id)).data;
     let image;
-    
-    switch(data.images.pages[0].t) {
+
+    switch (data.images.pages[0].t) {
         case "j": {
             image = await axios.get(`https://i.nhentai.net/galleries/${data.media_id}/1.jpg`, { responseType: "arraybuffer" });
             break;
         }
-        
+
         case "p": {
-          image = await axios.get(`https://i2.nhentai.net/galleries/${data.media_id}/1.png`, { responseType: "arraybuffer" });
+            image = await axios.get(`https://i2.nhentai.net/galleries/${data.media_id}/1.png`, { responseType: "arraybuffer" });
         }
     }
-    
 
     data.thumb = `data:image/png;base64,${Buffer.from(image.data).toString("base64")}`;
 
@@ -29,7 +29,7 @@ module.exports.test = async (id) => {
 module.exports.download = async (id) => {
     if (!id) throw new TypeError("id is required");
     id = id.toString();
-    const zip = new JsZip();
+    // const zip = new JsZip();
     const regex = new RegExp(/^((?:https?:\/\/|www\.)?nhentai\.net\/g\/)?(\d+)/, "i");
     const code = id.match(regex);
 
@@ -39,37 +39,46 @@ module.exports.download = async (id) => {
 
     if (!res || !res.images) throw new Error("Doujin not found");
     const folder = `${res.title.pretty} (${res.id})`;
-    zip.folder(folder);
-    let page = 1;
+    // zip.folder(folder);
 
-    let promises = res.images.pages.map((obj, i) => {
+    let promises = res.images.pages.map(async (obj, i) => {
         switch (obj.t) {
             case "j": {
-                return axios.get(`https://i.nhentai.net/galleries/${res.media_id}/${i + 1}.jpg`, { responseType: "arraybuffer", timeout: 5000 }).catch((err) => {
+                var buf = await axios.get(`https://i.nhentai.net/galleries/${res.media_id}/${i + 1}.jpg`, { responseType: "arraybuffer", timeout: 5000 }).catch((err) => {
                     console.log(err.message);
                     return null;
                 });
+                break;
             }
 
             case "p": {
-                return axios.get(`https://i2.nhentai.net/galleries/${res.media_id}/${i + 1}.png`, { responseType: "arraybuffer", timeout: 5000 }).catch((err) => {
+                var buf = await axios.get(`https://i2.nhentai.net/galleries/${res.media_id}/${i + 1}.png`, { responseType: "arraybuffer", timeout: 5000 }).catch((err) => {
                     console.log(err.message);
                     return null;
                 });
+                break;
             }
         }
+
+        if (!buf) return null;
+        let { h, w } = res.images.pages[i];
+        let doc = new Pdf.Document({ height: h, width: w });
+        doc.image(new Pdf.Image(buf.data));
+
+        return doc.asBuffer;
     });
 
     let resolve = await Promise.all(promises);
+    let meta = { author: "isla", creator: "isla", subject: "Doujin", title: folder };
+    let pdf = new Pdf.Document({ properties: meta });
 
     resolve.forEach((buffer, index) => {
         if (!buffer) return;
-        page++;
-        let arraybuffer = Buffer.from(buffer.data);
-        zip.file(`${folder}/${index}.jpg`, arraybuffer.toString("base64"), { base64: true });
+        let image = new Pdf.ExternalDocument(buffer);
+        pdf.addPageOf(index + 1, image);
     });
 
-    const finalFile = await zip.generateAsync({ type: "arraybuffer" });
+    // const finalFile = await zip.generateAsync({ type: "arraybuffer" });
 
     return {
         title: res.title.pretty,
