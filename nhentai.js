@@ -84,6 +84,7 @@ module.exports.download = async (id) => {
         title: res.title.pretty,
         id: res.id,
         doujin: res,
-        buffer: Buffer.from(finalFile),
+        //buffer: Buffer.from(finalFile),
+        buffer: pdf,
     };
 };

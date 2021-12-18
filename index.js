@@ -35,7 +35,8 @@ app.post("/download/isla", checkData, (req, res) => {
     res.set("Content-Disposition", "attachment; filename=" + `${req.nhentai.title} (isla doujin).zip`);
     res.set("Content-Type", "file/zip");
     let buffer = req.nhentai.buffer;
-    res.send(buffer);
+    // res.send(buffer);
+    buffer.pipe(res, { end: true });
 });
 
 app.use((req, res) => {
@@ -48,10 +49,9 @@ app.listen(PORT, () => {
 
 //Custom Middleware
 async function checkId(req, res, next) {
-    let isValid = await nhentai.test(req.body.id).catch((err) => { 
+    let isValid = await nhentai.test(req.body.id).catch((err) => {
         console.log(err);
         return null;
-      
     });
     if (isValid) {
         req.nhentai = isValid;
