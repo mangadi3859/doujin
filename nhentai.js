@@ -77,7 +77,6 @@ module.exports.download = async (id) => {
         let image = new Pdf.ExternalDocument(buffer);
         pdf.setTemplate(image);
         pdf.addPagesOf(image);
-        pdf.addPageOf(index + 1, image);
     });
 
     // const finalFile = await zip.generateAsync({ type: "arraybuffer" });
