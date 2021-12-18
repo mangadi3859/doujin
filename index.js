@@ -32,8 +32,8 @@ app.post("/download", checkId, (req, res) => {
 });
 
 app.post("/download/isla", checkData, (req, res) => {
-    res.set("Content-Disposition", "attachment; filename=" + `${req.nhentai.title} (isla doujin).zip`);
-    res.set("Content-Type", "file/zip");
+    res.set("Content-Disposition", "attachment; filename=" + `${req.nhentai.title} (isla doujin).pdf`);
+    res.set("Content-Type", "file/pdf");
     let buffer = req.nhentai.buffer;
     // res.send(buffer);
     buffer.pipe(res, { end: true });
