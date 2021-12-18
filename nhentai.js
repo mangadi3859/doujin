@@ -26,7 +26,7 @@ module.exports.test = async (id) => {
  *
  * @param {string} id - nhentai id
  */
-module.exports.download = async (id) => {
+module.exports.download = async (id, destination) => {
     if (!id) throw new TypeError("id is required");
     id = id.toString();
     // const zip = new JsZip();
@@ -38,7 +38,7 @@ module.exports.download = async (id) => {
     let res = (await axios.get("https://nhentai.net/api/gallery/" + id)).data;
 
     if (!res || !res.images) throw new Error("Doujin not found");
-    const folder = `${res.title.pretty} (${res.id})`;
+    const folder = `[isla-doujin] ${res.title.pretty} (${res.id})`;
     // zip.folder(folder);
 
     let promises = res.images.pages.map(async (obj, i) => {
@@ -63,14 +63,15 @@ module.exports.download = async (id) => {
         if (!buf) return null;
         let { h, w } = res.images.pages[i];
         let doc = new Pdf.Document({ height: h, width: w });
-        doc.image(new Pdf.Image(buf.data));
+        doc.image(new Pdf.Image(buf.data), { align: "center" });
 
         return doc.asBuffer();
     });
 
+    let pdf = new Pdf.Document({ properties: meta });
+    pdf.pipe(destination, { end: true });
     let resolve = await Promise.all(promises);
     let meta = { author: "isla", creator: "isla", subject: "Doujin", title: folder };
-    let pdf = new Pdf.Document({ properties: meta });
 
     resolve.forEach((buffer, index) => {
         if (!buffer) return;
@@ -81,11 +82,12 @@ module.exports.download = async (id) => {
     pdf.end();
     // const finalFile = await zip.generateAsync({ type: "arraybuffer" });
 
-    return {
-        title: res.title.pretty,
-        id: res.id,
-        doujin: res,
-        //buffer: Buffer.from(finalFile),
-        buffer: pdf,
-    };
+    return;
+
+    // return {
+    //     title: res.title.pretty,
+    //     id: res.id,
+    //     doujin: res,
+    //     buffer: Buffer.from(finalFile),
+    // };
 };

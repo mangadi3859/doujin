@@ -32,11 +32,11 @@ app.post("/download", checkId, (req, res) => {
 });
 
 app.post("/download/isla", checkData, (req, res) => {
-    res.set("Content-Disposition", "attachment; filename=" + `${req.nhentai.title} (isla doujin).pdf`);
+    res.set("Content-Disposition", "attachment; filename=" + `[isla-doujin] ${req.nhentai.title} - ().pdf`);
     res.set("Content-Type", "file/pdf");
-    let buffer = req.nhentai.buffer;
+
+    nhentai.download(req.nhentai.id, res);
     // res.send(buffer);
-    buffer.pipe(res, { end: true });
 });
 
 app.use((req, res) => {
@@ -62,8 +62,8 @@ async function checkId(req, res, next) {
 async function checkData(req, res, next) {
     const { id } = req.body;
     try {
-        let res = await nhentai.download(id);
-        req.nhentai = { id: res.id, title: res.title.replace(/[^\w\s\d%.,\-?!+_]/g, ""), buffer: res.buffer };
+        let res = await nhentai.test(id);
+        req.nhentai = { id: res.id, title: res.title.pretty.replace(/[^\w\s\d%.,\-?!+_]/g, "") };
         return next();
     } catch (err) {
         console.error(err);
