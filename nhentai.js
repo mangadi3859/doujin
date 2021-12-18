@@ -75,10 +75,10 @@ module.exports.download = async (id) => {
     resolve.forEach((buffer, index) => {
         if (!buffer) return;
         let image = new Pdf.ExternalDocument(buffer);
-        pdf.setTemplate(image);
         pdf.addPagesOf(image);
     });
 
+    pdf.end();
     // const finalFile = await zip.generateAsync({ type: "arraybuffer" });
 
     return {
