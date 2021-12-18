@@ -65,7 +65,7 @@ module.exports.download = async (id) => {
         let doc = new Pdf.Document({ height: h, width: w });
         doc.image(new Pdf.Image(buf.data));
 
-        return doc.asBuffer;
+        return doc.asBuffer();
     });
 
     let resolve = await Promise.all(promises);
