@@ -14,7 +14,7 @@
             <div class="container">
                 <h1 class="title">Result</h1>
                 <hr />
-                <form action="/download/isla" method="post">
+                <form action="./download/isla" method="post">
                     <div>
                         <img src="<%= image %>" alt="thumbnail" class="thumbnail" />
                     </div>
@@ -22,7 +22,7 @@
                     <input type="number" class="hidden" hidden value="<%= id %>" name="id" />
                     <button type="submit" class="download-btn" download-btn>Download</button>
                     <div class="home">
-                        <a href="/?query=<%= id %>">Back</a>
+                        <a href="./?query=<%= id %>">Back</a>
                     </div>
                 </form>
             </div>
