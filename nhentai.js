@@ -38,7 +38,7 @@ module.exports.download = async (id, destination) => {
     let res = (await axios.get("https://nhentai.net/api/gallery/" + id)).data;
 
     if (!res || !res.images) throw new Error("Doujin not found");
-    const folder = `[isla-doujin] ${res.title.pretty} (${res.id})`;
+    const folder = `[ISLA-DOUJIN] ${res.title.pretty} (${res.id})`;
     // zip.folder(folder);
 
     let promises = res.images.pages.map(async (obj, i) => {
@@ -65,7 +65,6 @@ module.exports.download = async (id, destination) => {
         let doc = new Pdf.Document({ height: h, width: w });
         doc.image(new Pdf.Image(buf.data), { align: "center" });
 
-        doc.end();
         return doc.asBuffer();
     });
 
