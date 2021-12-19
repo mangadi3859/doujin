@@ -35,7 +35,10 @@ app.post("/download/isla", checkData, (req, res) => {
     res.set("Content-Disposition", "attachment; filename=" + `[ISLA-DOUJIN] ${req.nhentai.title} - (${req.nhentai.id}).pdf`);
     res.set("Content-Type", "file/pdf");
 
-    nhentai.download(req.nhentai.id, res).catch((err) => res.status(500).json({ error: err.message }));
+    nhentai.download(req.nhentai.id, res).catch((err) => {
+        console.error(err);
+        res.status(500).redirect("/?query=" + id);
+    });
     // res.send(buffer);
 });
 
