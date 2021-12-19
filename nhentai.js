@@ -52,7 +52,7 @@ module.exports.download = async (id, destination) => {
             }
 
             case "p": {
-                var buf = await axios.get(`https://i2.nhentai.net/galleries/${res.media_id}/${i + 1}.png`, { responseType: "arraybuffer", timeout: 5000 }).catch((err) => {
+                var buf = await axios.get(`https://i.nhentai.net/galleries/${res.media_id}/${i + 1}.png`, { responseType: "arraybuffer", timeout: 5000 }).catch((err) => {
                     console.log(err.message);
                     return null;
                 });
@@ -61,11 +61,16 @@ module.exports.download = async (id, destination) => {
         }
 
         if (!buf) return null;
-        let { h, w } = res.images.pages[i];
-        let doc = new Pdf.Document({ height: h, width: w });
-        doc.image(new Pdf.Image(buf.data), { align: "center" });
+        try {
+            let { h, w } = res.images.pages[i];
+            let doc = new Pdf.Document({ height: h, width: w });
+            doc.image(new Pdf.Image(Buffer.from(buf.data)), { align: "center" });
 
-        return doc.asBuffer();
+            return doc.asBuffer();
+        }
+        catch (err) {
+            return null;
+        }
     });
 
     let meta = { author: "isla", creator: "isla", subject: "Doujin", title: folder };
