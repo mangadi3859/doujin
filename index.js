@@ -37,7 +37,7 @@ app.post("/download/isla", checkData, (req, res) => {
 
     nhentai.download(req.nhentai.id, res).catch((err) => {
         console.error(err);
-        res.status(500).redirect("/?query=" + req.nhentai.id);
+        
     });
     // res.send(buffer);
 });
