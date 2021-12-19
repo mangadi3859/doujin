@@ -65,6 +65,7 @@ module.exports.download = async (id, destination) => {
         let doc = new Pdf.Document({ height: h, width: w });
         doc.image(new Pdf.Image(buf.data), { align: "center" });
 
+        doc.end();
         return doc.asBuffer();
     });
 
